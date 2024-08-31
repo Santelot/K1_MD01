@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook - Misión</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .banner .title {
+            font-size: 1.2em;
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner .subtitle {
+            font-size: 1em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        .dialogue {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: right;
+            font-style: italic;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .note {
+            background-color: #ffeb3b;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .nav-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        }
+
+        function updateActivities() {
+            var selectedTime = document.getElementById('time-select').value;
+            var activities = document.getElementsByClassName('activity');
+
+            document.getElementById('selected-time').innerText = "Tiempo efectivo de clase: " + selectedTime + " minutos";
+
+            for (var i = 0; i < activities.length; i++) {
+                activities[i].style.display = 'block';
+            }
+
+            if (selectedTime === '45') {
+                document.getElementById('activity-2').style.display = 'none';
+            } else if (selectedTime === '40') {
+                document.getElementById('activity-2').style.display = 'none';
+                document.getElementById('activity-6').style.display = 'none';
+            }
+        }
+
+        function navigateTo(id) {
+            var element = document.getElementById(id);
+            window.scrollTo({
+                top: element.offsetTop,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</head>
+<body onload="updateActivities()">
+
+<div class="header">
+    <h1>Playbook - Gnius Club - Demo Kinder</h1>
+</div>
+
+<div class="container">
+    <div class="dropdown">
+        <label for="time-select">Tiempo efectivo de Clase:</label>
+        <select id="time-select" onchange="updateActivities()">
+            <option value="50">50 minutos</option>
+            <option value="45">45 minutos</option>
+            <option value="40">40 minutos</option>
+        </select>
+    </div>
+
+    <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+
+    <!-- Actividad 1 (3 pasos) -->
+    <div id="activity-1" class="activity">
+        <div class="banner" onclick="toggleContent('saludo_ritual')">
+            <div class="title">
+                <span>📚 Actividad 1: Saludo y Presentación de Gnius Club (3 pasos)</span>
+                <span>⏰ Tiempo: 1.5 minutos</span>
+            </div>
+            <div class="subtitle">Bienvenida y presentación de Gnius Club</div>
+        </div>
+        <div id="saludo_ritual" class="content">
+            <div class="section">
+                <div class="step-title">Paso 1 (0.5 minutos): Proyectar Diapositiva 1 "Gnius Club"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">🌟 ¡Hola, genios! 🌟 ¡Qué emoción verlos aquí hoy! Bienvenidos a Gnius Club, un lugar donde vamos a aprender jugando y divirtiéndonos muchísimo. Aquí, cada misión es una aventura diferente, y todos ustedes son los protagonistas. ¡Prepárense para divertirse y descubrir cosas nuevas!</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 2 (0.5 minutos): Proyectar Diapositiva 2 "¿Qué es Gnius Club?"</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Gnius Club es un laboratorio de innovación. Aquí no solo vamos a aprender, sino también a crear, imaginar y jugar. Hoy es una clase especial, donde van a descubrir cómo podemos aprender cosas nuevas de la manera más divertida posible. ¡Así que vamos a movernos y a explorar juntos! 🌟</div>
+            </div>
+            <div class="section">
+                <div class="step-title">Paso 3 (0.5 minutos): Mantener la Diapositiva 2</div>
+                <div class="section-title">Diálogo del Maestro</div>
+                <div class="dialogue">Para empezar, nos vamos a preparar para ésta misión súper especial. Vamos a tener juegos, retos y mucha diversión. Si están listos para esta aventura, ¡den un salto y agiten las manos! ¡Gnius Club está a punto de despegar! 🚀</div>
+            </div>
+        </div>
+<div id="activity-2" class="activity">
+    <div class="banner" onclick="toggleContent('baile_secuencia')">
+        <div class="title">
+            <span>🎵 Actividad 2: Baile con Secuencia (2 pasos)</span>
+            <span>⏰ Tiempo: 4 minutos</span>
+        </div>
+        <div class="subtitle">Baile siguiendo una secuencia de pasos</div>
+    </div>
+    <div id="baile_secuencia" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Proyectar Diapositiva 3 "Baile con Secuencia"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">🎵 Genios, ahora vamos a hacer algo muy divertido y un poco diferente. Vamos a bailar siguiendo una secuencia de pasos específicos, ¡como en los videojuegos de baile de hace muchos años! Vamos a ver qué tan buenos son para seguir instrucciones y movernos al ritmo. ¿Están listos para intentarlo? ¡Vamos a divertirnos! 💃🕺</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (3 minutos): Proyectar el video de la canción con la secuencia de pasos y guiar a los genios para seguirla</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¡Es hora de proyectar nuestro video y seguir la secuencia de pasos! 🎶 Miren bien los movimientos y síganlos al ritmo de la música. ¡Recuerden que lo importante es divertirse mientras seguimos las instrucciones! 🌟</div>
+        </div>
+    </div>
+</div>
+<div id="activity-3" class="activity">
+    <div class="banner" onclick="toggleContent('formacion_equipos')">
+        <div class="title">
+            <span>🤝 Actividad 3: Formación de Equipos (5 pasos)</span>
+            <span>⏰ Tiempo: 5 minutos</span>
+        </div>
+        <div class="subtitle">Organización de equipos y parejas</div>
+    </div>
+    <div id="formacion_equipos" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (3 minutos): Proyectar Diapositiva 4 "Formación de Equipos"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">🤝 Genios, ahora vamos a formar equipos para trabajar juntos en las próximas actividades. Vamos a hacer 5 equipos de 4 niños cada uno. ¡Los juegos y los retos son mucho más divertidos cuando trabajamos juntos!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Mantener la Diapositiva 4. Formar parejas dentro de cada equipo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Dentro de sus equipos, vamos a hacer algo especial. Cada equipo de 4 niños se dividirá en parejas. Así que busquen a un amigo dentro de su equipo y formen una pareja. ¡Así podrán trabajar aún más cerca y compartir ideas geniales!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (0.5 minutos): Verificar que todos los equipos y parejas estén organizados</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¿Todos tienen su equipo y su pareja? ¡Perfecto! Ahora que están listos, recuerden que trabajar en equipo y en pareja significa compartir y ayudarse unos a otros. ¡Cuanto más trabajen juntos, más divertida será la misión!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (0.5 minutos): Motivar la colaboración y compartir ideas en equipo</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">En sus equipos y parejas, cada uno de ustedes tiene algo único para compartir. Cuando combinan sus ideas y trabajan juntos, pueden crear algo realmente especial. ¡Así que asegúrense de escuchar a todos y de compartir sus materiales para que cada uno pueda participar!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (0.5 minutos): Preparación de materiales para la actividad</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Muy bien, equipos y parejas! Es hora de preparar todo y estar listos para la misión que viene. ¡Vamos a ver cómo pueden trabajar juntos para completar los desafíos de hoy!</div>
+        </div>
+    </div>
+</div>
+<div id="activity-4" class="activity">
+    <div class="banner" onclick="toggleContent('actividad_calentamiento')">
+        <div class="title">
+            <span>🐛 Actividad 4: Actividad de Calentamiento - Formando la Oruga (8 pasos)</span>
+            <span>⏰ Tiempo: 11 minutos</span>
+        </div>
+        <div class="subtitle">Preparación y práctica de movimientos coordinados en equipo</div>
+    </div>
+    <div id="actividad_calentamiento" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Proyectar Diapositiva 5 "Formando la Oruga"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">🐛 Genios, hoy vamos a hacer algo muy divertido: ¡vamos a ser una oruga gigante! La oruga se mueve como si todos estuvieran conectados en una fila. Primero, quiero que se formen desde el más chiquito al más grande. Así, el más bajito va adelante y el más alto va al final. ¿Listos para formar una fila? ¡Vamos a empezar!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (2 minutos): Mantener la Diapositiva 5. Formar la fila correctamente</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Para formar la oruga, cada uno debe agarrarse de los hombros del compañero de enfrente. No suelten los hombros, porque eso es lo que hace que la oruga se mueva como una sola. ¡Agarra bien a tu compañero y siente cómo se mueve la oruga!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (1 minuto): Repetir las instrucciones con ejemplos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">La oruga solo puede moverse con tres instrucciones: "Paso enfrente", "Giro a la derecha" y "Giro a la izquierda". Cuando alguien dice "Paso enfrente", todos dan un paso hacia adelante. Si dicen "Giro a la derecha", la cabeza gira a la derecha y todos la siguen. Lo mismo con "Giro a la izquierda". Vamos a practicar juntos: ¡den un "Paso enfrente"! 👣</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (2 minutos): Practicar movimientos juntos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Ahora vamos a practicar cada movimiento. Primero, todos juntos, ¡demos un "Paso enfrente"! Muy bien, ahora "Giro a la derecha". ¡Excelente! Y ahora "Giro a la izquierda". ¡Genial! ¿Ven cómo la oruga se mueve toda junta? Así es como vamos a llegar a la puerta.</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (0.5 minutos): Explicar el orden de los turnos</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Cada uno va a tener su turno para guiar a la oruga. Empezamos con el primero en la fila, que es la cabeza. Después de que la cabeza diga su instrucción, el segundo niño en la fila dice la siguiente, y así seguimos, uno por uno. Cuando todos hayan dado una instrucción, volvemos al primero. ¡Recuerden que es solo una instrucción a la vez!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 6 (0.5 minutos): Señal para comenzar la actividad</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¡Genios, es hora de empezar! Tenemos 5 minutos para lograr esta tarea. Recuerden, cada uno da solo una instrucción en su turno. Vamos a ver qué tan bien pueden guiar a su oruga hasta la puerta sin soltarse y moviéndose juntos. ¡Con calma y paso a paso, lo van a lograr! 🐛🚪</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 7 (5 minutos): Guiar a las orugas hacia la puerta</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¡Muy bien, genios! Recuerden, una instrucción a la vez, y sigan bien alineados. ¿Quién podrá llevar a su oruga a la puerta más rápido? ¡Vamos a mantenernos juntos y trabajar en equipo! Si se confunden, tómense su tiempo y piensen en el siguiente paso.</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 8 (0.5 minutos): Compartir experiencias</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¡Lo lograron, genios! Miren cómo sus orugas llegaron a la puerta. ¿Qué les pareció? ¿Fue fácil o difícil seguir las instrucciones? ¿Qué aprendieron sobre trabajar juntos? ¡Vamos a aplaudir a todas las orugas por su esfuerzo y trabajo en equipo! 👏🐛👏</div>
+        </div>
+    </div>
+</div>
+<div id="activity-5" class="activity">
+    <div class="banner" onclick="toggleContent('desafio_guiado')">
+        <div class="title">
+            <span>🐛 Actividad 5: Desafío Guiado - Construyendo el Arco para la Oruga (7 pasos)</span>
+            <span>⏰ Tiempo: 14 minutos</span>
+        </div>
+        <div class="subtitle">Construcción colaborativa y programación de movimientos</div>
+    </div>
+    <div id="desafio_guiado" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (1 minuto): Proyectar Diapositiva 7 "Construyendo el Arco para la Oruga"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">🐛 Genios, ahora vamos a trabajar con algo muy divertido: ¡una oruga y bloques de construcción! En cada equipo de 4, vamos a tener dos roles: unos serán los constructores y otros los programadores. Los constructores tendrán que construir un arco para que la oruga pueda pasar por debajo, y los programadores decidirán los pasos que tomará la oruga para pasar sin chocar. ¡Será como la actividad de la oruga de antes, pero con un reto extra! ¿Están listos?</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (1 minuto): Mantener la Diapositiva 7. Explicación de roles</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Primero, vamos a decidir quiénes serán los constructores y quiénes los programadores. Constructores, su misión es construir un arco lo suficientemente grande para que la oruga pueda pasar por debajo. Usen los bloques para crear un túnel fuerte y estable. Programadores, ustedes tendrán que escoger los pasos que la oruga tomará para pasar por debajo del arco sin chocar con la pared. ¡Recuerden lo que aprendimos antes con los movimientos!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (0.5 minutos): Mostrar la línea de cinta</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Para que todos sepan dónde deben colocar su arco, hemos puesto una marca en el suelo. Esa línea de cinta está a 40 cm de la pared. Los constructores deben asegurarse de que el arco esté justo en la marca para que la oruga pueda pasar. ¡Hagan lo mejor que puedan para que la oruga tenga suficiente espacio!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 4 (10 minutos): Construcción y planificación</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Constructores, es su turno de usar los bloques para construir el arco. Asegúrense de que sea lo suficientemente grande y estable para que la oruga pase sin problemas. Programadores, piensen en los movimientos de la oruga. Recuerden los pasos que practicamos: "Paso enfrente", "Giro a la derecha" y "Giro a la izquierda". Decidan el orden de estos pasos para que la oruga pase por debajo del arco y llegue a la meta sin chocar. ¡Trabajen juntos y compartan ideas!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 5 (0.5 minutos): Cambio de roles</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¡Muy bien, genios! Ahora vamos a cambiar los roles. Si fuiste constructor, ahora serás programador, y si fuiste programador, ahora serás constructor. Van a tener otra oportunidad de construir y planear, así que usen lo que aprendieron en el primer turno para hacerlo aún mejor. ¡Vamos a ver qué tan rápido pueden hacer el cambio y empezar de nuevo!</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 6 (10 minutos): Segunda ronda de construcción y planificación</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¡Es hora de la segunda ronda! Ahora que cambiaron los roles, constructores, creen el arco para la oruga, y programadores, decidan los pasos. Recuerden que tienen que trabajar rápido, ¡pero con cuidado! Ayúdense mutuamente y asegúrense de que la oruga pase por debajo del arco y llegue a la meta sin chocar. ¡Vamos, genios, ustedes pueden hacerlo! 🐛🏗️</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 7 (0.5 minutos): Compartir experiencias y logros</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">¡Qué gran trabajo hicieron, genios! Construyeron arcos y programaron a sus orugas para pasar por debajo. ¿Quién quiere compartir cómo lo hicieron? ¿Fue difícil o divertido? ¡Vamos a aplaudirnos todos por trabajar en equipo y usar nuestra imaginación! ¡Lo hicieron genial! 👏🐛👏</div>
+        </div>
+    </div>
+</div>
+<div id="activity-6" class="activity">
+    <div class="banner" onclick="toggleContent('honor_dojo_despedida')">
+        <div class="title">
+            <span>🎓 Actividad 6: Honor The Dojo y Despedida (3 pasos)</span>
+            <span>⏰ Tiempo: 3 minutos</span>
+        </div>
+        <div class="subtitle">Recogida y cierre de la clase</div>
+    </div>
+    <div id="honor_dojo_despedida" class="content">
+        <div class="section">
+            <div class="step-title">Paso 1 (2 minutos): Proyectar Diapositiva 9 "Honor The Dojo: Recogida de Ladrillos y Orugas"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Genios, hicieron un trabajo increíble hoy construyendo y programando sus orugas! Ahora es momento de recoger todos los ladrillos y orugas que usamos y llevarlos al frente para guardarlos. ¡Así mantenemos todo en orden para la próxima misión! Vamos a recoger todos juntos.</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 2 (0.5 minutos): Mantener la Diapositiva 9</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Genios, qué día tan divertido hemos tenido! ¿Les gustó construir y programar a sus orugas? Si les gustó la clase de hoy, ¡levanten los brazos y agiten sus manos como si estuvieran saludando a todos sus amigos! ¡Gracias por participar y por ser tan creativos hoy! 🌍🙌</div>
+        </div>
+        <div class="section">
+            <div class="step-title">Paso 3 (0.5 minutos): Proyectar Diapositiva 10 "¡Hasta la próxima, genios!"</div>
+            <div class="section-title">Diálogo del Maestro</div>
+            <div class="dialogue">Y ahora es momento de decir adiós, genios. ¡Gracias por venir y por construir cosas tan increíbles hoy! Nos vemos en la próxima misión, donde habrá más diversión y muchas más aventuras. ¡Hasta pronto, genios! 👋</div>
+        </div>
+    </div>
+</div>
+
+
+
+    </div>
+</div>
+
+</body>
+</html>
